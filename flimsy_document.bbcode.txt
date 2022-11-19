@@ -1,0 +1,60 @@
+Structure> vignette / free form:
+
+[center][h1]Summary Here[/h1][/center]
+
+[h3]Details[/h3]
+[ul]
+[li]Detail 1[/li]
+[li]Detail 2[/li]
+[li]Detail 3[/li]
+[/ul]
+
+Structure> Sidebar top:
+
+/*
+Card Display to Article Prompt
+-----------------------------------------
+Use vignette for main card information.
+
+To fill in Character comments, updates, etc, use Footnotes prompt
+
+To fill in for the sidebar:
+"Case File", use Historical Details > Background
+"Top Stack", use Structure > Clauses prompt
+"Location", use Related Location prompt
+"Per", use Signatories(Characters), Signatories(Organizations), or Structure > References(for anything like another document)
+"Status", use Publication Status prompt
+"Creator", use Document Author prompt
+"Date Created", use Authoring Date
+"Lasted Updated", use Ratificaton Date
+"Date Closed", use Expiration Date
+*/
+
+
+Structure > footnotes:
+
+[hr]
+
+[container:mmi_cmt_outer]
+[container:mmi_cmts]
+[small]Character: Character Comment[/small]
+[small]Character: Character Comment[/small]
+[small]Character: Character Comment[/small]
+[small]Character: Character Comment[/small]
+[/container]
+[/container]
+
+
+--------
+
+Presentation Configuration
+
+Name:
+Flimsie Card
+
+Icon:
+fa-duotone fa-memo-pad
+
+Description:
+An article to represent a Star Wars Flimsie. For details on how to use, see the comment in Sidebar Top
+

@@ -1,0 +1,17 @@
+.user-css .mmi_cmt_outer {
+    display: flex !important;
+    justify-content: flex-end;
+}
+.user-css .mmi_cmts {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 58%;
+}
+.user-css .sub-card-body .sub-card-body-sect {
+    margin-bottom: 10px;
+}
+
+.user-css .hdr_stomp .section-title {
+    display: none;
+}

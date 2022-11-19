@@ -1,0 +1,146 @@
+<div class="row">
+	<div class="col-md-{% if article.displaySidebar == 0  %}12{% else  %}8{% endif %} article-content-left ">
+		<div class="user-css-vignette">
+
+		{{ article.content|BBcode }}
+		
+		</div>
+		
+		{% if article.footnotes %}
+			<h2>Comments and Updates</h2>
+			<div class="user-css article-footnotes">{{ article.footnotes|BBcode }}</div>
+		{% endif %}
+	</div>
+	<div class="col-md-4 article-content-right">
+		<div class="world-global-annnouncement">
+			{{ article.world.globalAnnouncement|BBcode }}
+		</div>
+		{% if article.contents %}
+			<button type="button" class="read-document-button  btn btn-primary btn-block d-block  m-b-20" data-toggle="modal" data-target="#myModal"  data-bs-toggle="modal" data-bs-target="#myModal" >{{ 'document.modal.read.document'|trans({},'presentation') }}</button>
+			<div class="modal fade read-document-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog read-document-modal-dialog" role="document">
+					<div class="modal-content read-document-data">
+						<div class="modal-header read-document-data-header">
+							<h4 class="modal-title" id="myModalLabel">{{ article.title }}</h4>
+						</div>
+						<div class="modal-body read-document-data-main">
+							{{ article.contents|BBcode  }}
+						</div>
+						<div class="modal-footer read-document-data-bottom">
+							<button type="button" class="btn btn-default"  data-bs-dismiss="modal" data-dismiss="modal">{{ 'document.modal.close'|trans({},'presentation') }}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% if article.sidebarcontent|length > 0 %}
+			<div class="m-b-20">{{ article.sidebarcontent|BBcode  }}</div>
+		{% endif %}
+
+			<div class="panel panel-default card mb-3">
+				<div class="panel-body card-body">
+					{% if article.world.globalAnnouncement|length > 0 %}
+						<div class="world-global-annnouncement">
+							{{ article.world.globalAnnouncement|BBcode }}
+						</div>
+					{% endif %}
+					{{ article.sidepanelcontenttop|BBcode }}
+					<div class="card-body-group">
+						{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.type, 'title':'type','locale': locale} only %}
+
+						{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': 'Flimsiplast', 'title':'document.article.medium','locale': locale} only %}
+
+						<hr>
+
+						<div class="sub-card-bd">
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.background, 'title':'Case File','locale': locale} only %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.clauses, 'title':'Top Stack','locale': locale} only %}
+							</div>
+
+							{% if article.relatedlocation|length > 0 %}
+								<div class="sub-card-bd-sect">
+									{% include 'PresentationBundle:Helpers:relation.html.twig' with {
+										'value': article.relatedlocation,
+										'title':'document.article.location',
+										'article': article,'locale': locale
+									} only %}
+								</div>
+							{% endif %}
+
+							<div class="sub-card-bd-sect">
+								{# The 'Per' section is a combination of signatory characters, orgs and free form field of text references #}
+								{% if
+									article.textreferences|length > 0 or
+									article.signatorycharacters|length > 0 or
+									article.signatoryorganizations|length > 0
+								%}
+									<div class="section-title">
+										<strong class="section-heading">
+										Per
+										</strong>
+									</div>
+									<div class="hdr_stomp">
+										{% include 'PresentationBundle:Helpers:relationlist.html.twig' with {
+											'list': article.signatorycharacters,
+											'title': '',
+											'locale': locale
+										} only %}
+										{% include 'PresentationBundle:Helpers:relationlist.html.twig' with {
+											'list': article.signatoryorganizations,
+											'title': '',
+											'locale': locale
+										} only %}											
+										{% include 'PresentationBundle:Helpers:value.html.twig' with {
+											'value': article.textreferences, 
+											'title':'',
+											'locale': locale
+										} only %}
+									</div>
+								{% endif %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {
+									'value': article.publicity, 
+									'title':'Status',
+									'locale': locale
+								} only %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:relationlist.html.twig' with {
+									'list': article.documentauthors,
+									'title': 'Creator',
+									'locale': locale
+								} only %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{# The dates the card was filled out, updated, etc #}
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.authoringDate, 'title':'Date Created','locale': locale} only %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.ratificationDate, 'title':'Last Updated','locale': locale} only %}
+							</div>
+
+							<div class="sub-card-bd-sect">
+								{% include 'PresentationBundle:Helpers:value.html.twig' with {'value': article.expirationDate, 'title':'Date Closed','locale': locale} only %}
+							</div>	
+						</div>					
+
+					</div>
+					{{ article.sidepanelcontent|BBcode }}
+				</div>
+			</div>
+
+		{{ article.sidebarcontentbottom|BBcode }}
+		<div class="world-global-article-additional">
+			{{ article.world.globalSidebarFooter|BBcode }}
+		</div>
+	</div>
+</div>
